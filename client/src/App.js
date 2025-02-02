@@ -4,13 +4,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home';
 import Register from './pages/register';
 import Login from './pages/login';
+import Test from './pages/test';
+import 'antd/dist/reset.css';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>}></Route>
+          {/* <Route path='/' element={<Home/>}></Route> */}
+          <Route path='/' element={<Test/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
         </Routes>

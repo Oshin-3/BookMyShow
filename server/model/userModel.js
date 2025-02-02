@@ -31,10 +31,16 @@ const userSchema = new mongoose.Schema({
             message: "Password and Confirm Password "
         }
     },
-    isAdmin : {
-        type : Boolean,
-        default : false,
-        requiredd : true
+    // isAdmin : {
+    //     type : Boolean,
+    //     default : false,
+    //     requiredd : true
+    // }
+    role: {
+        type: String,
+        enum: ["admin", "user", "partner"],
+        required: true,
+        default: "user"
     }
 },
 {timestamps : true}

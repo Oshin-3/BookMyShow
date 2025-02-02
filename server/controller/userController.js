@@ -1,4 +1,5 @@
 const UserModel = require('../model/userModel')
+const jwt = require('jsonwebtoken')
 
 //add user
 const addUser = async (req, res) => {
@@ -47,6 +48,7 @@ const getAllUsers = async (req, res) => {
 const loginUser = async (req, res) => {
     const userId = await UserModel.findOne({email: req.body.email})
 
+    const token = jwt.sign({userId: userId._id}, process.env.JWT_SECRET, {expiresIn: "1m"})
     if (!userId){
         res.send({
             success: false,
@@ -56,13 +58,14 @@ const loginUser = async (req, res) => {
     else if (userId.password !== req.body.password){
         res.send({
             success: false,
-            message: "Password and Confirm Password does not match"
+            message: "Invalid password"
         })
     }
     else{
         res.send({
             success: true, 
             user: userId,
+            data: token,
             message: "Login Successfully"
         })
     }
