@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+.flex{
+  display: flex;
+}
+
+.justify-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.h-screen{
+  height: 100vh;
+}
+
+.w-100{
+  width: 500px;
+}
+
+.shadow-lg{
+  box-shadow: 10px 10px 20px lightgray;
+}
+
+.rounded-lg{
+  border-radius: 10px;
+}
+
+.bg-gray-100{
+  background-color: rgb(243 244 246);
+}
+
+.p-20{
+  padding: 20px;
+}
+
+.font{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.text-red-500{
+  color: #D10000;
+}
