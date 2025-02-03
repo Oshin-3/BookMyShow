@@ -48,7 +48,7 @@ const getAllUsers = async (req, res) => {
 const loginUser = async (req, res) => {
     const userId = await UserModel.findOne({email: req.body.email})
 
-    const token = jwt.sign({userId: userId._id}, process.env.JWT_SECRET, {expiresIn: "1m"})
+    const token = jwt.sign({userId: userId._id}, process.env.JWT_SECRET, {expiresIn: "1d"})
     if (!userId){
         res.send({
             success: false,
@@ -71,8 +71,35 @@ const loginUser = async (req, res) => {
     }
 }
 
+//get current user
+const getCurrentUser = async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.body.userId).select("-password")
+        if (user){
+            res.send({
+                success: true,
+                data: user,
+                message: "Found the user"
+            })   
+        }
+        else{
+            res.send({
+                success: false,
+                message: "User not found"
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: "Some error occured"
+        })
+    }
+}
+
 module.exports = {
     addUser,
     getAllUsers,
-    loginUser
+    loginUser,
+    getCurrentUser
 }
