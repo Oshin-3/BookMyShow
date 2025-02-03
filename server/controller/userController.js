@@ -75,6 +75,8 @@ const loginUser = async (req, res) => {
 const getCurrentUser = async (req, res) => {
     try {
         const user = await UserModel.findById(req.body.userId).select("-password")
+        console.log("userId: ", req.body.userId)
+        console.log("user: ", user)
         if (user){
             res.send({
                 success: true,

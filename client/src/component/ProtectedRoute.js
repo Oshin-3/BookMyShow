@@ -1,0 +1,74 @@
+import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { ShowLoader, HideLoader } from '../redux/loaderSlice'
+import { SetUser } from '../redux/userSlice'
+import { HomeOutlined, LogoutOutlined, ProfileOutlined, UserOutlined} from '@ant-design/icons'
+import { Layout, Menu } from 'antd'
+import { GetCurrentUser } from '../api/userApi'
+
+function ProtectedRoute({children}) {
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.users)
+
+    console.log("User -> ", user)
+    const navItem = [
+        {label: "Home", icon: <HomeOutlined/>},
+        {label: `${user ? user.name : " "}`, icon: <UserOutlined/>, children: [
+            {label: <span onClick={() => {
+                if (user.role == "admin"){
+                    navigate('/admin')
+                }else if (user.role == "partner"){
+                    navigate('/partner')
+                }else{
+                    navigate('/home')
+                }
+            }}>My Profile</span>, icon: <ProfileOutlined/>},
+            {label: <span>Logout</span>, icon: <LogoutOutlined/>}
+        ]}
+    ]
+
+    const { Header, Footer, Sider, Content} = Layout
+
+    const getCurrentUser = async () => {
+        try {
+            dispatch(ShowLoader())
+            const res = await GetCurrentUser()
+            console.log("Get current user:",res.data)
+            dispatch(SetUser(res.data))
+            dispatch(HideLoader())
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem("token")){
+            console.log("fetched token")
+            getCurrentUser()
+        }
+        else{
+            navigate('/login')
+        }
+    }, [])
+
+  return (
+    
+    user && (
+        <>
+        <Layout>
+            <Header className='d-flex justify-content-between text-center align-item-center'>
+                <h3 className='text-red-500'>Book My Show</h3>
+                <Menu theme='dark' mode='horizontal' items={navItem}></Menu>
+            </Header>
+            <div>{children}</div>
+        </Layout>
+        </>
+    )
+  )
+}
+
+export default ProtectedRoute

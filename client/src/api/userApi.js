@@ -20,11 +20,12 @@ export const LoginUser = async (value) => {
     }
 }
 
-export const GetCurrentUser = async (value) => {
+export const GetCurrentUser = async () => {
     try {
-        const res = await axiosInstance.get('/api/user/get-current-user', value)
+        const res = await axiosInstance.get('/api/users/get-current-user')
+        console.log("data -> ", res.data)
         return res.data
     } catch (error) {
-        console.log(error)
+        console.log("Axios error -> ", error)
     }
 }
