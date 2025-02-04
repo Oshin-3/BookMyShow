@@ -85,6 +85,10 @@
   background-color: rgb(243 244 246);
 }
 
+.bg-white-100{
+  background-color: #ffff;
+}
+
 .p-20{
   padding: 20px;
 }
@@ -95,4 +99,8 @@
 
 .text-red-500{
   color: #D10000;
+}
+
+.margin-10{
+  margin: 50px;
 }

@@ -1,6 +1,8 @@
 const express = require('express')
 
+//Routers
 const userRouter = require('./routes/userRoutes')
+const movieRouter = require('./routes/movieRoutes')
 
 const app = express()
 app.use(express.json())
@@ -12,6 +14,8 @@ connectDb()
 
 //user router
 app.use('/api/users/', userRouter)
+//movie router
+app.use('/api/movies/', movieRouter)
 
 app.listen(8082, () => 
 {

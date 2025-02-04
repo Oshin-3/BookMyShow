@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/home';
 import Register from './pages/register';
 import Login from './pages/login';
+import Admin from './pages/admin';
 import ProtectedRoute from './component/ProtectedRoute';
 import Test from './pages/test';
 import store from './redux/store'
@@ -23,6 +24,11 @@ function App() {
             {/* <Route path='/' element={<Test/>}></Route> */}
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
+            <Route path='/admin' element={
+              <ProtectedRoute>
+                <Admin/>
+              </ProtectedRoute>
+            }></Route>
           </Routes>
         </BrowserRouter>
       </Provider>

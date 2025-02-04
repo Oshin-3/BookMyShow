@@ -14,10 +14,10 @@ function ProtectedRoute({children}) {
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.users)
 
-    console.log("User -> ", user)
+  
     const navItem = [
         {label: "Home", icon: <HomeOutlined/>},
-        {label: `${user ? user.name : " "}`, icon: <UserOutlined/>, children: [
+        {label: `${user ? user.firstName +" " + user.lastName : " "}`, icon: <UserOutlined/>, children: [
             {label: <span onClick={() => {
                 if (user.role == "admin"){
                     navigate('/admin')
@@ -27,7 +27,9 @@ function ProtectedRoute({children}) {
                     navigate('/home')
                 }
             }}>My Profile</span>, icon: <ProfileOutlined/>},
-            {label: <span>Logout</span>, icon: <LogoutOutlined/>}
+            {label: <span onClick={() => {
+                localStorage.removeItem("token")
+            }}>Logout</span>, icon: <LogoutOutlined/>}
         ]}
     ]
 
@@ -55,6 +57,7 @@ function ProtectedRoute({children}) {
         }
     }, [])
 
+    console.log("User -> ", user)
   return (
     
     user && (
