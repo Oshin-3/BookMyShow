@@ -7,7 +7,8 @@ const getAllMovies = async (req, res) => {
         
         res.send({
             success: true,
-            message: allMovies
+            data: allMovies,
+            message: "Fetched All Movies"
         })
     } catch (error) {
         res.status("500").json({
@@ -32,7 +33,7 @@ const addMovie = async (req, res) => {
         console.log(error)
         res.status("500").json({
             success: false,
-            message: "Some error occured"
+            message: error
         })
     }
 }
@@ -41,8 +42,6 @@ const addMovie = async (req, res) => {
 const updateMovie = async (req, res) => {
     try {
 
-        const movieId = await MovieModel.findById(req.body.id)
-        console.log("movie id: ", movieId)
         const updatedMovie = await MovieModel.findByIdAndUpdate(req.body.id, req.body)
         
         res.send({

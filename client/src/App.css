@@ -67,6 +67,10 @@
   width: 500px;
 }
 
+.w-10{
+  width: 10px;
+}
+
 .align-item-center{
   width: 100%;
   display: flex;
@@ -101,6 +105,15 @@
   color: #D10000;
 }
 
-.margin-10{
+.margin-50{
   margin: 50px;
+}
+
+.margin-10{
+  margin: 10px
+}
+
+.justify-content-end{
+  display: flex;
+  justify-content: end;
 }

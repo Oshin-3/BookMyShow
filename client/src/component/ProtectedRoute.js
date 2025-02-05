@@ -57,7 +57,7 @@ function ProtectedRoute({children}) {
         }
     }, [])
 
-    console.log("User -> ", user)
+    //console.log("User -> ", user)
   return (
     
     user && (
