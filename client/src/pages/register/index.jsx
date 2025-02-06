@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Input, message } from 'antd'
+import { Form, Button, Input, message, Radio } from 'antd'
 import { AddUser } from '../../api/userApi'
 import { useNavigate } from 'react-router-dom'
 
@@ -58,15 +58,6 @@ function Register() {
                     <Input type='text' placeholder='Enter Your Last Name'></Input>
                 </Form.Item>
                 <Form.Item
-                    name="email"
-                    htmlFor='email'
-                    label="Email"
-                    rules={[{required: true, message: "Please Enter Your Email"}]}
-                >
-
-                    <Input type='text' placeholder='Enter Your Email'></Input>
-                </Form.Item>
-                <Form.Item
                     name="mobileNo"
                     htmlFor='mobileNo'
                     label="Mobile No."
@@ -74,6 +65,15 @@ function Register() {
                 >
 
                     <Input type='text' placeholder='Enter Your Mobile Number'></Input>
+                </Form.Item>
+                <Form.Item
+                    name="email"
+                    htmlFor='email'
+                    label="Email"
+                    rules={[{required: true, message: "Please Enter Your Email"}]}
+                >
+
+                    <Input type='text' placeholder='Enter Your Email'></Input>
                 </Form.Item>
                 <Form.Item
                     name="password"
@@ -90,6 +90,19 @@ function Register() {
                     rules={[{required: true, message: "Please Confirm Password"}]}
                 >
                     <Input type='password' placeholder='Enter Confirm Password'></Input>
+                </Form.Item>
+                <Form.Item
+                    name="role"
+                    htmlFor='role'
+                    label="Want to register as partner? "
+                    //className='d-flex align-item-center w-100'
+                    rules={[{required: true, message:"Please select the role"}]}
+                    style={{display: "flex", gap: "10px"}}
+                >
+                    <Radio.Group name='radioGroup'>
+                        <Radio value='partner'>Yes</Radio>
+                        <Radio value='user'>No</Radio>
+                    </Radio.Group>
                 </Form.Item>
                 {contextHolder}
                 <Form.Item>

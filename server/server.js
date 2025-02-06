@@ -3,6 +3,7 @@ const express = require('express')
 //Routers
 const userRouter = require('./routes/userRoutes')
 const movieRouter = require('./routes/movieRoutes')
+const theaterRouter = require('./routes/theaterRoutes')
 
 const app = express()
 app.use(express.json())
@@ -16,6 +17,8 @@ connectDb()
 app.use('/api/users/', userRouter)
 //movie router
 app.use('/api/movies/', movieRouter)
+//theater router
+app.use('/api/theaters', theaterRouter)
 
 app.listen(8082, () => 
 {
