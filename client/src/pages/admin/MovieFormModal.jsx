@@ -17,7 +17,7 @@ const MovieFormModal = ({
 }) => {
 
     const dispatch = useDispatch()
-    const [messageApi, contextHeader] = message.useMessage();
+    const [messageApi, contextHolder] = message.useMessage();
 
     //console.log("selected movie modal ", selectedMovie)
     // if (selectedMovie){
@@ -40,22 +40,26 @@ const MovieFormModal = ({
             }
             console.log("Data=> ", res.data)
             if (res.success){
+                messageApi.open({
+                    type: 'success',
+                    content: res.message
+                })
                 getAllMovies()
-                // messageApi.open({
-                //     type: 'success',
-                //     content: res.message
-                // })
-                messageApi.success(res.message)
-                setIsMovieFormModalOpen(false)
+                
+                //messageApi.success(res.message)
+               
             }else{
-                // messageApi.open({
-                //     type: 'error',
-                //     content: res.message
-                // })
-                messageApi.error(res.message)
+                messageApi.open({
+                    type: 'error',
+                    content: res.message
+                })
+                //messageApi.error(res.message)
             }
 
             setSelectedMovie(null)
+            setTimeout(() => {
+                setIsMovieFormModalOpen(false)
+            },1005)
             //setFormType('add')
             dispatch(HideLoader())
             
@@ -73,7 +77,7 @@ const MovieFormModal = ({
 
   return (
     <>
-        {contextHeader}
+        {contextHolder}
         <Modal centered
             title={formType === "add" ? "Add Movie" : "Edit Movie"}
             open={isMovieFormModalOpen}

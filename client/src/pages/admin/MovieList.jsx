@@ -8,7 +8,7 @@ import { SetMovie } from '../../redux/movieSlice'
 import moment from 'moment'
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import MovieFormModal from './MovieFormModal'
-import { DeleteMovieModal } from './DeleteMovieModal'
+import DeleteMovieModal from './DeleteMovieModal'
 
 
 function MovieList() {
@@ -98,7 +98,10 @@ function MovieList() {
                             <EditOutlined/>
                         </Button>
                         
-                        <Button color='danger' variant='solid'>
+                        <Button color='danger' variant='solid' onClick={() => {
+                            setIsDeleteMovieModalOpen(true)
+                            setSelectedMovie(data)
+                        }}>
                             <DeleteOutlined/>
                         </Button>
                     </div>
@@ -130,6 +133,18 @@ function MovieList() {
                     setIsMovieFormModalOpen = {setIsMovieFormModalOpen}
                     formType = {formType}
                     setFormType = {setFormType}
+                    getAllMovies = {getAllMovies}
+                    selectedMovie = {selectedMovie}
+                    setSelectedMovie = {setSelectedMovie}
+                />
+            )
+        }
+
+        {
+            isDeleteMovieModalOpen && (
+                <DeleteMovieModal
+                    isDeleteMovieModalOpen = {isDeleteMovieModalOpen}
+                    setIsDeleteMovieModalOpen = {setIsDeleteMovieModalOpen}
                     getAllMovies = {getAllMovies}
                     selectedMovie = {selectedMovie}
                     setSelectedMovie = {setSelectedMovie}
