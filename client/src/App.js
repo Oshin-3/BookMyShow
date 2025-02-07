@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Register from './pages/register';
 import Login from './pages/login';
 import Admin from './pages/admin';
+import Partner from './pages/partner';
 import ProtectedRoute from './component/ProtectedRoute';
 import Test from './pages/test';
 import store from './redux/store'
@@ -27,8 +28,13 @@ function App() {
             <Route path='/admin' element={
               <ProtectedRoute>
                 <Admin/>
-              </ProtectedRoute>
-            }></Route>
+              </ProtectedRoute>}>
+            </Route>
+            <Route path='/partner' element={
+              <ProtectedRoute>
+                <Partner/>
+              </ProtectedRoute>}>
+            </Route>
           </Routes>
         </BrowserRouter>
       </Provider>

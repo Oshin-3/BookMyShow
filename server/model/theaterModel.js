@@ -28,7 +28,7 @@ const theatherSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true,
-        required: true
+        //required: true
     },
     comment: {
         type: String
@@ -36,7 +36,7 @@ const theatherSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ["Approved", "In Progress", "Rejected"],
-        required: true,
+        //required: true,
         default: "In Progress"
     },
     owner: {
