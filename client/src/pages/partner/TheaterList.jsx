@@ -59,30 +59,38 @@ function TheaterList() {
             dataIndex: "email"
         },
         {
-            title: "Phone no.",
-            dataIndex: "phoneNo"
-        },
-        {
             title: "Comment",
             dataIndex: "comment"
         },
         {
             title: "Status",
-            dataIndex: "status"
+            dataIndex: "status",
+            render: (text, data) => {
+                if (data.status === "Approved"){
+                    return <span style={{ color: "#0000FFbl" }}>{text}</span>;
+                }else if (data.status === "Rejected"){
+                    return <span style={{ color: "#e55353" }}>{text}</span>
+                }else{
+                    return <span style={{ color: "#008000" }}>{text}</span>;
+                }
+            }
         },
         {
             title: "Action",
+            width: "20%",
             render: (text, data) => {
                 return(
                     <>
-                        <Button color='primary' variant='outlined' className='margin-10' onClick={() => {
+                        <Button color='primary' variant='outlined' className='margin-10'
+                            disabled={data.status === "Approved" || data.status === "Rejected"} onClick={() => {
                             setIsTheaterFormModalOpen(true)
                             setFormType("edit")
                             setSelectedTheater(data)
                         }}>
                             <EditOutlined/>
                         </Button>
-                        <Button color='danger' variant='solid' onClick={() => {
+                        <Button color='danger' variant='solid' 
+                            disabled={data.status === "Approved" || data.status === "Rejected"} onClick={() => {
                             setIsDeleteTheaterModalOpen(true)
                             setSelectedTheater(data)
                         }}>

@@ -29,6 +29,7 @@ function ProtectedRoute({children}) {
             }}>My Profile</span>, icon: <ProfileOutlined/>},
             {label: <span onClick={() => {
                 localStorage.removeItem("token")
+                navigate("/login")
             }}>Logout</span>, icon: <LogoutOutlined/>}
         ]}
     ]
@@ -49,7 +50,7 @@ function ProtectedRoute({children}) {
 
     useEffect(() => {
         if (localStorage.getItem("token")){
-            console.log("fetched token")
+            console.log("fetched token -> ", localStorage.getItem("token"))
             getCurrentUser()
         }
         else{

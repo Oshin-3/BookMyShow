@@ -26,6 +26,6 @@ export const GetCurrentUser = async () => {
         //console.log("data -> ", res.data)
         return res.data
     } catch (error) {
-        //onsole.log("Axios error -> ", error)
+        console.log("Axios error -> ", error)
     }
 }

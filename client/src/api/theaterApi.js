@@ -32,7 +32,7 @@ export const DeleteTheater = async(theaterId) => {
 
 export const GetAllTheaters = async() => {
     try {
-        const res = await axiosInstance.get('/api/theater/get-all-theaters')
+        const res = await axiosInstance.get('/api/theaters/get-all-theaters')
         console.log(res.data)
         return res.data
     } catch (error) {
