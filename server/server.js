@@ -4,6 +4,7 @@ const express = require('express')
 const userRouter = require('./routes/userRoutes')
 const movieRouter = require('./routes/movieRoutes')
 const theaterRouter = require('./routes/theaterRoutes')
+const showRouter = require('./routes/showRoutes')
 
 const app = express()
 app.use(express.json())
@@ -19,6 +20,8 @@ app.use('/api/users/', userRouter)
 app.use('/api/movies/', movieRouter)
 //theater router
 app.use('/api/theaters', theaterRouter)
+//show routes
+app.use('/api/shows', showRouter)
 
 app.listen(8082, () => 
 {

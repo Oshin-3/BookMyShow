@@ -9,7 +9,8 @@ function Partner() {
             key: 1, 
             label: "Theaters",
             children: <TheaterList/>
-        }
+        },
+        
     ]
 
   return (

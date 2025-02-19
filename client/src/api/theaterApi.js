@@ -49,3 +49,13 @@ export const GetAllTheatersByOwner = async(ownerId) => {
         console.log(error)
     }
 }
+
+export const GetTheaterById = async(theaterId) => {
+    try {
+        const res = await axiosInstance.get(`/api/theaters/get-theater-by-id/${theaterId}`)
+        console.log(res.data)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -102,10 +102,28 @@ const getAllTheaterByOwner = async (req, res) => {
     }
 }
 
+const getTheaterById = async (req, res) => {
+    try {
+
+        const theater = await TheaterModel.findById({_id: req.params.theaterId})
+        res.send({
+            success: true, 
+            message: "Theater details fetched",
+            data: theater
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: "Some error occured"
+        })
+    }
+}
+
 module.exports = {
     addTheater,
     updateTheater,
     deleteTheater,
     getAllTheaters,
-    getAllTheaterByOwner
+    getAllTheaterByOwner,
+    getTheaterById
 }

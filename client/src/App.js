@@ -6,6 +6,7 @@ import Register from './pages/register';
 import Login from './pages/login';
 import Admin from './pages/admin';
 import Partner from './pages/partner';
+import Shows from './pages/partner/ShowsList';
 import ProtectedRoute from './component/ProtectedRoute';
 import Test from './pages/test';
 import store from './redux/store'
@@ -34,6 +35,13 @@ function App() {
               <ProtectedRoute>
                 <Partner/>
               </ProtectedRoute>}>
+            </Route>
+            <Route path='/api/shows/:theaterId' element={
+              <ProtectedRoute>
+                <Shows/>
+              </ProtectedRoute>
+            }>
+
             </Route>
           </Routes>
         </BrowserRouter>

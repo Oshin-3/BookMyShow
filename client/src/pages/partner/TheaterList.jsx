@@ -9,6 +9,7 @@ import moment from 'moment'
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import TheaterFormModal from './TheaterFormModal'
 import DeleteTheaterModal from './DeleteTheaterModal'
+import ShowFormModal from './ShowFormModal'
 
 function TheaterList() {
 
@@ -19,6 +20,7 @@ function TheaterList() {
     const [selectedTheater, setSelectedTheater] = useState(null)
     const [isTheaterFormModalOpen, setIsTheaterFormModalOpen] = useState(false)
     const [isDeleteTheaterModalOpen, setIsDeleteTheaterModalOpen] = useState(false)
+    const [isShowFormModalOpen, setIsShowFormModalOpen] = useState(false)
 
     const getTheaterData = async () => {
         try {
@@ -40,7 +42,10 @@ function TheaterList() {
     const tableHeadings = [
         {
             title: "Name",
-            dataIndex: "theaterName"
+            dataIndex: "theaterName",
+            render: (text, data) => {
+                return <a href={`/api/shows/${data._id}`}>{text}</a>
+            }
         },
         {
             title: "Address",
@@ -81,21 +86,39 @@ function TheaterList() {
             render: (text, data) => {
                 return(
                     <>
-                        <Button color='primary' variant='outlined' className='margin-10'
-                            disabled={data.status === "Approved" || data.status === "Rejected"} onClick={() => {
-                            setIsTheaterFormModalOpen(true)
-                            setFormType("edit")
-                            setSelectedTheater(data)
-                        }}>
-                            <EditOutlined/>
-                        </Button>
-                        <Button color='danger' variant='solid' 
-                            disabled={data.status === "Approved" || data.status === "Rejected"} onClick={() => {
-                            setIsDeleteTheaterModalOpen(true)
-                            setSelectedTheater(data)
-                        }}>
-                            <DeleteOutlined/>
-                        </Button>
+                        {
+                            (!data.isActive) ? (
+                                <div>
+                                    <Button color='primary' variant='outlined' className='margin-10'
+                                        onClick={() => {
+                                        setIsTheaterFormModalOpen(true)
+                                        setFormType("edit")
+                                        setSelectedTheater(data)
+                                    }}>
+                                        <EditOutlined/>
+                                    </Button>
+                                    <Button color='danger' variant='solid' 
+                                        onClick={() => {
+                                        setIsDeleteTheaterModalOpen(true)
+                                        setSelectedTheater(data)
+                                    }}>
+                                        <DeleteOutlined/>
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div>
+                                    <Button color='primary' variant='outlined'
+                                        onClick={() => {
+                                            setIsShowFormModalOpen(true)
+                                            setSelectedTheater(data)
+                                            setFormType("add")
+                                        }}
+                                    >
+                                        <PlusOutlined />Add Shows
+                                    </Button>
+                                </div>
+                            )
+                        }
                     </>
                 )
             }
@@ -140,6 +163,19 @@ function TheaterList() {
                     getTheaterData = {getTheaterData}
                     selectedTheater = {selectedTheater}
                     setSelectedTheater = {setSelectedTheater}
+                />
+            )
+        }
+
+        {
+            isShowFormModalOpen && (
+                <ShowFormModal 
+                    isShowFormModalOpen = {isShowFormModalOpen}
+                    setIsShowFormModalOpen = {setIsShowFormModalOpen}
+                    selectedTheater = {selectedTheater}
+                    setSelectedTheater = {setSelectedTheater}
+                    formType = {formType}
+                    setFormType = {setFormType}
                 />
             )
         }

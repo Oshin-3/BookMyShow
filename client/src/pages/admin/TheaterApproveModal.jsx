@@ -30,7 +30,7 @@ const TheaterApproveModal = ({
 
             let res = null
             if (actionType == "approve"){
-                res = await UpdateTheater({...value, id: selectedTheater._id, status: "Approved"})
+                res = await UpdateTheater({...value, id: selectedTheater._id, status: "Approved", isActive: true})
             }else{
                 res = await UpdateTheater({...value, id: selectedTheater._id, status: "Rejected"})
             }
