@@ -18,6 +18,7 @@ function ShowsList() {
   const [isShowFormModalOpen, setIsShowFormModalOpen] = useState(false)
   const [isShowDeleteModalOpen, setIsShowDeleteModalOpen] = useState(false)
   const [formType, setFormType] = useState("add")
+  const [selectedMovie, setSelectedMovie] = useState(null)
 
   let {theaterId} = useParams()
   const dispatch = useDispatch()
@@ -111,7 +112,8 @@ function ShowsList() {
                 <div>
                     <Button color='primary' variant='outlined'  className='margin-10' onClick={() =>{
                       setIsShowFormModalOpen(true)
-                      setSelectedShow(data)
+                      setSelectedShow({...data, date: moment(data.date).format("YYYY-MM-DD")})
+                      setSelectedMovie(data.movie)
                       setFormType("edit")
                     }}>
                         <EditOutlined/>
@@ -155,6 +157,8 @@ console.log("theater ", selectedTheater)
             selectedShow={selectedShow}
             setSelectedShow={setSelectedShow}
             getShowsByTheater={getShowsByTheater}
+            selectedMovie={selectedMovie}
+            setSelectedMovie={setSelectedMovie}
           />
         )
       }

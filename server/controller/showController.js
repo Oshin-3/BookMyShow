@@ -15,7 +15,7 @@ const addShow = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.send({
-            success: true,
+            success: false,
             message: "Some error has occured"
         })
     }
@@ -28,13 +28,14 @@ const updateShow = async (req, res) => {
 
         res.send({
             success: true,
-            message: "Show added successfully",
+            message: "Show updated successfully",
             data: show
         })
         
     } catch (error) {
+        console.log(error)
         res.send({
-            success: true,
+            success: false,
             message: "Some error has occured"
         })
     }
@@ -74,7 +75,7 @@ const getAllShowsByTheater = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.send({
-            success: true,
+            success: false,
             message: "Some error has occured"
         })
     }
@@ -109,7 +110,7 @@ const getAllTheatersByMovies = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.send({
-            success: true,
+            success: false,
             message: "Some error has occured"
         })
     }
@@ -127,7 +128,7 @@ const getShowById = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.send({
-            success: true,
+            success: false,
             message: "Some error has occured"
         })   
     }

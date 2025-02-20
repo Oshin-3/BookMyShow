@@ -24,7 +24,7 @@ function ProtectedRoute({children}) {
                 }else if (user.role == "partner"){
                     navigate('/partner')
                 }else{
-                    navigate('/home')
+                    navigate('/profile')
                 }
             }}>My Profile</span>, icon: <ProfileOutlined/>},
             {label: <span onClick={() => {

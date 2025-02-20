@@ -16,7 +16,9 @@ const ShowFormModal = ({
     setFormType,
     selectedShow,
     setSelectedShow,
-    getShowsByTheater
+    getShowsByTheater,
+    selectedMovie,            
+    setSelectedMovie
 }) => {
 
     const dispatch = useDispatch()
@@ -45,7 +47,7 @@ const ShowFormModal = ({
 
     const onFinish = async (values) => {
         try {
-            console.log(values)
+            //console.log("values, ", values)
             dispatch(ShowLoader())
 
             let res = null
@@ -91,7 +93,7 @@ const ShowFormModal = ({
         fetchMovies()
     },[dispatch])
 
-    console.log('show ' , selectedShow.movie.movieName)
+    //console.log('selected movie ' , selectedMovie)
   return (
     <>
     {contextHolder}
@@ -111,18 +113,16 @@ const ShowFormModal = ({
                             label='Movies'
                             rules={[{required: true, message: "Select the movie!"}]}
                         >
-                            <Select 
-                                placeholder='Select Movie' defaultValue={selectedShow.movie.movieName || {}}
+                            <Select
+                                placeholder='Select a movie'
+                                defaultValue={selectedMovie ? "hi" : "hello"}
+                                
                             >
-                                {allMovies && allMovies.length > 0 ? (
-                                        allMovies.map((movie) => (
-                                            <Select.Option key={movie._id} value={movie._id}>
-                                                {movie.movieName}
-                                            </Select.Option>
-                                        ))
-                                    ) : (
-                                        <Select.Option disabled>No movies available</Select.Option>
-                                    )}
+                                {allMovies && allMovies.map((movie) => (
+                                    <Select.Option key={movie._id} value={movie._id}>
+                                        {movie.movieName}
+                                    </Select.Option>
+                                ))}
                             </Select>
                         </Form.Item>
                     </Col>

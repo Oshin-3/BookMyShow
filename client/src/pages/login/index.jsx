@@ -11,14 +11,20 @@ function Login() {
     const onFinish = async (values) => {
         try {
             const res = await LoginUser(values)
-            console.log(res)
+            console.log("User-> ", res)
             if (res.success){
                 messageApi.open({
                     type: 'success',
                     content: res.message
                 })
                 localStorage.setItem("token", res.data)
-                navigate('/')
+                if (res.user.role == "user")
+                {
+                    navigate('/profile')
+                }else{
+                    navigate('/')
+                }
+                
             }
             else {
                 messageApi.open({
