@@ -4,6 +4,8 @@ import { ShowLoader, HideLoader } from '../../redux/loaderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Input, Row, Col, message, Form } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import moment from "moment"
 
 function Profile() {
 
@@ -12,6 +14,7 @@ function Profile() {
     const [searchText, setSearchText] = useState(null)
     const [messageApi, contextHeader] = message.useMessage()
     const { loader } = useSelector(state => state.loaders)
+    const navigate = useNavigate()
 
     const getAllMovies = async () => {
         try {
@@ -37,14 +40,16 @@ function Profile() {
         getAllMovies()
     }, [])
 
-    console.log("movies -> ", movies)
+    //console.log("movies -> ", movies)
 
     const handleSearch = (e) => {
         setSearchText(e.target.value)
         console.log("search text -> ", searchText)
     }
   return (
+
     <> 
+        {contextHeader}
         {
             loader ? (<p>Loading...</p>) : (
                 <>
@@ -72,12 +77,28 @@ function Profile() {
                                     )                                    
                                     .map((movie) => (
                                     //console.log(movie)
-                                    <Col span={4}>
-                                        <div className='card rounded-lg'>
-                                            <a href='/api/movies' target='_blank'>
-                                                <img className='card-img' src={movie.poster}/>
-                                            </a>
-                                            
+                                    <Col className='justify-center' span={{xs: 8, sm: 16, md: 12, lg:10}}>
+                                        <div className='bg-white-100 shadow-lg rounded-lg'>
+                                        <img 
+                                        onClick={() => {
+                                            navigate(
+                                            `/movie/${movie._id}?date=${moment().format("YYYY-MM-DD")}`
+                                            )
+                                        }}
+                                        width={200}
+                                        className='rounded-lg-top cursor-pointer'
+                                        src={movie.poster} alt={movie.movieName}/>
+                
+                                        <p 
+                                            onClick={() => {
+                                            navigate(
+                                                `/movie/${movie._id}?date=${moment().format("YYYY-MM-DD")}`)
+                                            }}
+                                            className='cursor-pointer' 
+                                            style={{fontWeight: "bold"}}
+                                        >
+                                            {movie.movieName}
+                                        </p>
                                         </div>
                                     </Col>
                                     

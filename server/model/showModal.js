@@ -29,6 +29,9 @@ const showSchema = new mongoose.Schema({
         type: Array,
        
     },
+    price: {
+        type: Number
+    },
     movie: {
         type: mongoose.Schema.ObjectId,
         ref: "movies",

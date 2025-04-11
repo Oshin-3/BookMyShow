@@ -86,39 +86,39 @@ function TheaterList() {
             render: (text, data) => {
                 return(
                     <>
-                        {
-                            (!data.isActive) ? (
-                                <div>
+                        
+                            
+                        <div>
+                            <Button color='primary' variant='outlined' className='margin-10'
+                                onClick={() => {
+                                setIsTheaterFormModalOpen(true)
+                                setFormType("edit")
+                                setSelectedTheater(data)
+                            }}>
+                                <EditOutlined/>
+                            </Button>
+                            <Button color='danger' variant='solid' 
+                                onClick={() => {
+                                setIsDeleteTheaterModalOpen(true)
+                                setSelectedTheater(data)
+                            }}>
+                                <DeleteOutlined/>
+                            </Button>
+                            {
+                                (data.isActive) ? (
                                     <Button color='primary' variant='outlined' className='margin-10'
-                                        onClick={() => {
-                                        setIsTheaterFormModalOpen(true)
-                                        setFormType("edit")
-                                        setSelectedTheater(data)
-                                    }}>
-                                        <EditOutlined/>
-                                    </Button>
-                                    <Button color='danger' variant='solid' 
-                                        onClick={() => {
-                                        setIsDeleteTheaterModalOpen(true)
-                                        setSelectedTheater(data)
-                                    }}>
-                                        <DeleteOutlined/>
-                                    </Button>
-                                </div>
-                            ) : (
-                                <div>
-                                    <Button color='primary' variant='outlined'
                                         onClick={() => {
                                             setIsShowFormModalOpen(true)
                                             setSelectedTheater(data)
                                             setFormType("add")
                                         }}
                                     >
-                                        <PlusOutlined />Add Shows
-                                    </Button>
-                                </div>
-                            )
-                        }
+                                    Shows
+                                </Button>) : ("")
+                            }
+                        </div>
+                            
+                        
                     </>
                 )
             }
@@ -174,8 +174,6 @@ function TheaterList() {
                     setIsShowFormModalOpen = {setIsShowFormModalOpen}
                     selectedTheater = {selectedTheater}
                     setSelectedTheater = {setSelectedTheater}
-                    formType = {formType}
-                    setFormType = {setFormType}
                 />
             )
         }
