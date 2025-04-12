@@ -39,3 +39,12 @@ export const DeleteMovie = async (value) => {
         console.log(error)
     }
 }
+
+export const GetMovieById = async (id) => {
+    try {
+        const res = await axiosInstance.get(`/api/movies/movie/${id}`)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

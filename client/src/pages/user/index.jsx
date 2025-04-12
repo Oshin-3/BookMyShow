@@ -81,6 +81,7 @@ function Profile() {
                                         <div className='bg-white-100 shadow-lg rounded-lg'>
                                         <img 
                                         onClick={() => {
+                                            
                                             navigate(
                                             `/movie/${movie._id}?date=${moment().format("YYYY-MM-DD")}`
                                             )
@@ -91,6 +92,7 @@ function Profile() {
                 
                                         <p 
                                             onClick={() => {
+                                            
                                             navigate(
                                                 `/movie/${movie._id}?date=${moment().format("YYYY-MM-DD")}`)
                                             }}
@@ -119,8 +121,6 @@ function Profile() {
                 </>
             )
         }
-        
-        
     </>
   )
 }

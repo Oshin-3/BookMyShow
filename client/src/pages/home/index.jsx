@@ -3,7 +3,7 @@ import Profile from '../user'
 
 function Home() {
   return (
-    <div><Profile/></div>
+    <div>Home</div>
   )
 }
 

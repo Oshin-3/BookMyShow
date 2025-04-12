@@ -16,7 +16,9 @@ function ProtectedRoute({children}) {
 
   
     const navItem = [
-        {label: "Home", icon: <HomeOutlined/>},
+        {label: <span onClick={() => {
+            navigate('/profile')
+        }}>Home</span>, icon: <HomeOutlined/>},
         {label: `${user ? user.firstName +" " + user.lastName : " "}`, icon: <UserOutlined/>, children: [
             {label: <span onClick={() => {
                 if (user.role == "admin"){
@@ -65,7 +67,9 @@ function ProtectedRoute({children}) {
         <>
         <Layout>
             <Header className='d-flex justify-content-between text-center align-item-center'>
-                <h3 className='text-red-500'>Book My Show</h3>
+                <h3 className='text-red-500 cursor-pointer' onClick={() => {
+                    navigate('/profile')
+                }}>Book My Show</h3>
                 <Menu theme='dark' mode='horizontal' items={navItem}></Menu>
             </Header>
             <div>{children}</div>

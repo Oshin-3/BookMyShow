@@ -18,12 +18,13 @@ function Login() {
                     content: res.message
                 })
                 localStorage.setItem("token", res.data)
-                if (res.user.role == "user")
-                {
-                    navigate('/profile')
-                }else{
-                    navigate('/')
-                }
+                // if (res.user.role == "user")
+                // {
+                //     navigate('/profile')
+                // }else{
+                //     navigate('/')
+                // }
+                navigate('/profile')
                 
             }
             else {
